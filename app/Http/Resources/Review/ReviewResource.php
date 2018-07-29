@@ -14,7 +14,7 @@ class ReviewResource extends JsonResource
      */
     public function toArray($request)
     {
-        //REVİEW datalarını istenilen şekile dçnüştüryoruz.
+        //REVİEW datalarını istenilen şekile dçnüştüryoruz. ve
         return [
             'customer' => $this->customer,
             'body' => $this->review,

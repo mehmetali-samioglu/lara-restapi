@@ -16,6 +16,7 @@ class ReviewController extends Controller
      */
     public function index(Product $product)
     {
+        //reviewresource şeklinde dönüştürülen dataları aşağıdaki şekilde gösteriyoruz.
        return ReviewResource::collection($product->reviews);
     }
 
