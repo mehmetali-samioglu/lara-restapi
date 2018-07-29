@@ -15,7 +15,7 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-
+        //burada Product modelinin detayları  dönüştürüldü.
         return [
             'name' => $this->name,
             'description' => $this->detail,
