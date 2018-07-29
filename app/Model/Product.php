@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function rewiews()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
