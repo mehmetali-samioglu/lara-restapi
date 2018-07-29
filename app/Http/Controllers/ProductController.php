@@ -22,7 +22,7 @@ class ProductController extends Controller
         // Tüm product datasını dönüştürülmüş productcollectiondan çekiyoruz.
         //return ProductResource::collection(Product::all());
 
-        return  ProductCollection::collection(Product::all());
+        return  ProductCollection::collection(Product::paginate(20));
 
     }
 
