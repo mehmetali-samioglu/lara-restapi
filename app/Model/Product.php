@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
+    //silindi
     protected  $fillable = [
         'name','detail','stock','price','discount'
     ];
