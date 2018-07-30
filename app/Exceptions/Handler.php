@@ -3,6 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -27,10 +30,7 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     *
-     * @param  \Exception  $exception
-     * @return void
+     * Bir istisna bildirme veya kaydetme.
      */
     public function report(Exception $exception)
     {
@@ -38,14 +38,25 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * HTTP yanıtına bir istisna oluşturun.
      */
     public function render($request, Exception $exception)
     {
+        if($request->expectsJson()){
+            if ($exception instanceof ModelNotFoundException){
+                return response()->json([
+                    'errors' => 'Product Model Bulunamadı.'
+                ],Response::HTTP_NOT_FOUND);
+            }
+            
+            if ($exception instanceof NotFoundHttpException){
+                return response()->json([
+                    'errors' => 'Url Yolu Yanlış'
+                ],Response::HTTP_NOT_FOUND);
+            }
+        }
+
+
         return parent::render($request, $exception);
     }
 }
