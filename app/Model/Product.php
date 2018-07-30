@@ -8,7 +8,7 @@ class Product extends Model
 {
 
     protected  $fillable = [
-        'name','details','stock','price','discount'
+        'name','detail','stock','price','discount'
     ];
 
     public function reviews()
